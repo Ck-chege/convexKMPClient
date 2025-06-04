@@ -1,0 +1,34 @@
+[package]
+name = "convex-kmp"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "staticlib"]
+path = "src/lib.rs"  # Use this only if lib.rs is in this path
+
+[dependencies]
+convex = "0.9.0"
+tokio = { version = "1.0", features = ["full"] }
+futures = "0.3"
+serde_json = "1.0"
+async-once-cell = "0.5"
+parking_lot = "0.12"
+log = "0.4"
+thiserror = "1.0"
+anyhow = "1.0"
+uniffi = "0.27.3"
+
+# Force vendored OpenSSL for cross-compilation
+[dependencies.openssl]
+version = "0.10"
+features = ["vendored"]
+
+[build-dependencies]
+uniffi = { version = "0.27.3", features = ["build"] }
+
+[target.'cfg(target_os = "android")'.dependencies]
+android_logger = "0.13"
+
+[dev-dependencies]
+maplit = "1.0"

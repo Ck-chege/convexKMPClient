@@ -1,0 +1,49 @@
+namespace convex_kmp {};
+
+[Error]
+interface ClientError {
+InternalError(string msg);
+ConvexError(string data);
+ServerError(string msg);
+InvalidContext(string msg);
+};
+
+callback interface QuerySubscriber {
+void on_update(string value);
+void on_error(string message, string? value);
+};
+
+interface SubscriptionHandle {
+void cancel();
+boolean is_cancelled();
+};
+
+interface MobileConvexClient {
+    [Throws=ClientError]
+    constructor(string deployment_url, string client_id);
+
+// Synchronous methods (for non-async contexts)
+    [Throws=ClientError]
+    string querySync(string name, record<string, string> args);
+
+    [Throws=ClientError]
+    SubscriptionHandle subscribeSync(string name, record<string, string> args, QuerySubscriber subscriber);
+
+    [Throws=ClientError]
+    string mutationSync(string name, record<string, string> args);
+
+    [Throws=ClientError]
+    string actionSync(string name, record<string, string> args);
+
+    [Throws=ClientError]
+    void set_authSync(string? token);
+
+// Utility methods
+boolean is_initialized();
+
+void shutdown();
+
+u64 active_subscription_count();
+
+boolean is_shutting_down();
+};

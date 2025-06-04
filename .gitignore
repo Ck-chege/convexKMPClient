@@ -1,0 +1,73 @@
+*.iml
+.gradle
+.idea
+.DS_Store
+build
+captures
+.externalNativeBuild
+.cxx
+local.properties
+xcuserdata
+.kotlin
+#So we don't accidentally commit our private keys
+*.gpg
+
+# Gradle files
+/build/
+*/build/
+**/target/
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+
+# Kotlin/Native
+/kotlin-native-*.tar.gz
+/kotlin-native-*/
+
+# Android
+/gen/
+/out/
+*.apk
+*.aab
+*.aar
+*.ap_
+*.dex
+
+# iOS
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace/
+Pods/
+
+# JavaScript/TypeScript
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.pnp/
+.pnp.js
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Misc
+*.log
+*.swp
+*.tmp
+.tmp/
+tmp/
+.history/
+.vscode/
+*.bak
+
+# Convex specific (if any)
+.convex/

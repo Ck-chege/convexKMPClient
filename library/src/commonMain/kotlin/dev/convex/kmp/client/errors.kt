@@ -47,8 +47,8 @@ class InternalError(message: String, cause: Throwable? = null) : Exception(messa
 
 class InvalidContext(message: String, cause: Throwable? = null) : Exception(message, cause) {
     companion object {
-        fun from(exception: ClientException.InvalidContext): InternalError =
-            InternalError(exception.msg, exception)
+        fun from(exception: ClientException.InvalidContext): InvalidContext =
+            InvalidContext(exception.msg, exception)
     }
 }
 

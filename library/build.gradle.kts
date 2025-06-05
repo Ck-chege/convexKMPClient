@@ -1,4 +1,3 @@
-import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -18,11 +17,11 @@ group = "dev.convex.kmp"
 version = "1.0.0"
 
 kotlin {
-//    jvm("desktop") {
-//        compilerOptions {
-//            jvmTarget.set(JvmTarget.JVM_11)
-//        }
-//    }
+    jvm("desktop") {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
+    }
     androidTarget {
         publishLibraryVariants("release")
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
@@ -33,25 +32,24 @@ kotlin {
     iosX64()
     iosArm64()
     iosSimulatorArm64()
-//    linuxX64()
+
+
+//    macosX64()      // macOS Intel
+//    macosArm64()    // macOS Apple Silicon
+//    mingwX64()      // Windows 64-bit
+////    linuxX64()      // Linux 64-bit
+
+
+
 
     sourceSets {
-
-        val desktopMain by getting
-
-        val commonMain by getting {
-            dependencies {
-                //put your multiplatform dependencies here
-                implementation(libs.serialization)
-                implementation(libs.kermit.logging)
-            }
+        commonMain.dependencies {
+            implementation(libs.serialization)
+            implementation(libs.kermit.logging)
         }
-        val commonTest by getting {
-            dependencies {
-                implementation(libs.kotlin.test)
-            }
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
         }
-
     }
 }
 
@@ -66,6 +64,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 }
+
+
 //
 //mavenPublishing {
 //    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
@@ -100,3 +100,5 @@ android {
 //        }
 //    }
 //}
+
+

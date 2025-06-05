@@ -66,10 +66,42 @@ internal fun Any?.toJsonElement(): JsonElement {
     }
 }
 
-expect fun Long.toByteArray(): ByteArray
-expect fun ByteArray.toLong(): Long
-expect fun Double.toByteArray(): ByteArray
-expect fun ByteArray.toDouble(): Double
+//expect fun Long.toByteArray(): ByteArray
+//expect fun ByteArray.toLong(): Long
+//expect fun Double.toByteArray(): ByteArray
+//expect fun ByteArray.toDouble(): Double
+
+
+
+//package dev.convex.kmp.client
+
+fun Long.toByteArray(): ByteArray {
+    val bytes = ByteArray(8)
+    var value = this
+    for (i in 7 downTo 0) {
+        bytes[i] = (value and 0xFF).toByte()
+        value = value shr 8
+    }
+    return bytes
+}
+
+fun ByteArray.toLong(): Long {
+    var result = 0L
+    for (i in 0..7) {
+        result = (result shl 8) or (this[i].toUByte().toLong())
+    }
+    return result
+}
+
+fun Double.toByteArray(): ByteArray {
+    val bits = this.toBits()
+    return bits.toByteArray()
+}
+
+fun ByteArray.toDouble(): Double {
+    val bits = this.toLong()
+    return Double.fromBits(bits)
+}
 
 
 

@@ -18,7 +18,11 @@ group = "dev.convex.kmp"
 version = "1.0.0"
 
 kotlin {
-//    jvm()
+//    jvm("desktop") {
+//        compilerOptions {
+//            jvmTarget.set(JvmTarget.JVM_11)
+//        }
+//    }
     androidTarget {
         publishLibraryVariants("release")
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
@@ -32,6 +36,9 @@ kotlin {
 //    linuxX64()
 
     sourceSets {
+
+        val desktopMain by getting
+
         val commonMain by getting {
             dependencies {
                 //put your multiplatform dependencies here
@@ -44,6 +51,7 @@ kotlin {
                 implementation(libs.kotlin.test)
             }
         }
+
     }
 }
 
@@ -58,37 +66,37 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 }
-
-mavenPublishing {
-    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
-
-    signAllPublications()
-
-    coordinates(group.toString(), "library", version.toString())
-
-    pom {
-        name = "My library"
-        description = "A library."
-        inceptionYear = "2024"
-        url = "https://github.com/kotlin/multiplatform-library-template/"
-        licenses {
-            license {
-                name = "XXX"
-                url = "YYY"
-                distribution = "ZZZ"
-            }
-        }
-        developers {
-            developer {
-                id = "XXX"
-                name = "YYY"
-                url = "ZZZ"
-            }
-        }
-        scm {
-            url = "XXX"
-            connection = "YYY"
-            developerConnection = "ZZZ"
-        }
-    }
-}
+//
+//mavenPublishing {
+//    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+//
+//    signAllPublications()
+//
+//    coordinates(group.toString(), "library", version.toString())
+//
+//    pom {
+//        name = "My library"
+//        description = "A library."
+//        inceptionYear = "2024"
+//        url = "https://github.com/kotlin/multiplatform-library-template/"
+//        licenses {
+//            license {
+//                name = "XXX"
+//                url = "YYY"
+//                distribution = "ZZZ"
+//            }
+//        }
+//        developers {
+//            developer {
+//                id = "XXX"
+//                name = "YYY"
+//                url = "ZZZ"
+//            }
+//        }
+//        scm {
+//            url = "XXX"
+//            connection = "YYY"
+//            developerConnection = "ZZZ"
+//        }
+//    }
+//}
